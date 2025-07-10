@@ -18,8 +18,7 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/graalvm/native-image-community:24-muslib-ol8
+
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 24
@@ -29,7 +28,8 @@ jobs:
         distribution: 'graalvm'
         cache: maven
     - name: Build with Maven
-      run: mvn -B clean package -Plinux
+      run: |
+          docker run --rm -v ${{ github.workspace }}:/app -w /app ghcr.io/graalvm/native-image-community:24.0.0-ol8-musl ./mvnw -Plinux native:compile
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:
