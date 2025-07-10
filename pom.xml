@@ -42,9 +42,6 @@
                 <artifactId>native-maven-plugin</artifactId>
                 <version>0.10.2</version>
                 <configuration>
-                    <buildArgs>
-                        <arg>--static</arg>
-                    </buildArgs>
                 </configuration>
                 <executions>
                     <execution>
