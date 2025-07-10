@@ -10,8 +10,8 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <mainClass>cn.wangfeixiong.csearch.MGrepApp</mainClass>
-        <java.version>17</java.version>
+        <mainClass>cn.wangfeixiong.mgrep.MGrepApp</mainClass>
+        <java.version>24</java.version>
     </properties>
 
     <build>
@@ -42,9 +42,6 @@
                 <artifactId>native-maven-plugin</artifactId>
                 <version>0.10.2</version>
                 <configuration>
-                    <buildArgs>
-                        <buildArg>-J-Xmx100m</buildArg>
-                    </buildArgs>
                 </configuration>
                 <executions>
                     <execution>

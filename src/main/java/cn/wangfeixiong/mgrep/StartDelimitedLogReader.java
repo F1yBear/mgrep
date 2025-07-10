@@ -1,4 +1,4 @@
-package cn.wangfeixiong.csearch;
+package cn.wangfeixiong.mgrep;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;

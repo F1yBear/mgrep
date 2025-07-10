@@ -1,4 +1,4 @@
-package cn.wangfeixiong.csearch;
+package cn.wangfeixiong.mgrep;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -131,7 +131,6 @@ public class AhoCorasickMatcher {
                 }
             }
         }
-
         return results;
     }
 

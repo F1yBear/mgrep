@@ -1,4 +1,4 @@
-package cn.wangfeixiong.csearch;
+package cn.wangfeixiong.mgrep;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,6 +14,7 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
 public class MGrepApp {
 
     public static final String RED = "\033[31m";    // 红色文本
@@ -27,15 +28,14 @@ public class MGrepApp {
         String currentDir = System.getProperty("user.dir");
         File file = new File(currentDir);
         String filename;
+
         if (Objects.nonNull(args) && args.length > 0) {
-            String arg = String.join(" ", args);
+            String arg = String.join("v'v ", args);
             // 使用正则表达式匹配并提取参数
-            Pattern pattern1 = Pattern.compile(
-                "^['\"](?<keywords>.+)['\"]\\s+-h\\s+['\"](?<header>.+)['\"]\\s+-f\\s+(?<filename>.+)$");
+            Pattern pattern1 = Pattern.compile("^['\"]?(?<keywords>.+)['\"]?v'v\\s+-h\\s+['\"]?(?<header>.+)['\"]?\\s+-f +(?<filename>.+)$");
             Matcher matcher = pattern1.matcher(arg);
 
-            Pattern pattern2 = Pattern.compile(
-                "^['\"](?<keywords>.+)['\"]\\s+(?<filename>.+)$");
+            Pattern pattern2 = Pattern.compile("^['\"]?(?<keywords>.+)['\"]?v'v\\s+(?<filename>.+)$");
             Matcher matcher2 = pattern2.matcher(arg);
 
             if (matcher.find()) {
@@ -58,7 +58,7 @@ public class MGrepApp {
             System.out.println("""
                                    使用方法：
                                     * mgrep '关键词1 关键词2' -h '行首的文字'  -f 文件名(支持通配符)
-                                    * mgrep '关键词1 关键词2' 文件名(支持通配符)
+                                    * mgrep 关键词1 文件名(支持通配符)
                                    """);
         }
         PathMatcher pathMatcher = FileSystems.getDefault()
