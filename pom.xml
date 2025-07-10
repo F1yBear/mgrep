@@ -67,8 +67,6 @@
                             <buildArgs>
                                 <buildArg>--static</buildArg> <!-- 启用静态链接 -->
                                 <buildArg>--libc=musl</buildArg>
-                                <buildArg>-L/usr/local/lib</buildArg>
-                                <buildArg>--no-fallback</buildArg> <!-- 禁用 fallback 模式 -->
                             </buildArgs>
                         </configuration>
                     </plugin>
