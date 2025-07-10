@@ -67,6 +67,10 @@
                             <buildArgs>
                                 <buildArg>--static</buildArg> <!-- 启用静态链接 -->
                                 <buildArg>--libc=musl</buildArg>
+                                <buildArg>-H:LinkerOption=-L/usr/local/lib</buildArg>
+                                <buildArg>-H:LinkerOption=-lz</buildArg>  <!-- 动态库在前 -->
+                                <buildArg>-H:LinkerOption=/usr/local/lib/libz.a</buildArg>  <!-- 静态库在后 -->
+                                <buildArg>--no-fallback</buildArg> <!-- 禁用 fallback 模式 -->
                             </buildArgs>
                         </configuration>
                     </plugin>
