@@ -11,7 +11,7 @@
 
     <properties>
         <mainClass>cn.wangfeixiong.mgrep.MGrepApp</mainClass>
-        <java.version>21</java.version>
+        <java.version>24</java.version>
     </properties>
 
     <build>
@@ -66,6 +66,7 @@
                             <mainClass>${mainClass}</mainClass> <!-- 替换为你的主类 -->
                             <buildArgs>
                                 <arg>--static</arg> <!-- 启用静态链接 -->
+                                <arg>--libc=glibc</arg>
                                 <arg>--no-fallback</arg> <!-- 禁用 fallback 模式 -->
                             </buildArgs>
                         </configuration>
