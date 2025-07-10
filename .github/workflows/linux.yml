@@ -22,7 +22,7 @@ jobs:
     - name: Install musl
       run: |
         sudo apt-get update
-        sudo apt-get install -y musl musl-dev musl-tools zlib1g-dev
+        sudo apt-get install -y curl unzip gcc g++ musl-tools zlib1g-dev libstdc++6
     - uses: actions/checkout@v4
     - name: Set up JDK 21
       uses: actions/setup-java@v4
