@@ -37,21 +37,70 @@
                 </configuration>
             </plugin>
 
-            <plugin>
-                <groupId>org.graalvm.buildtools</groupId>
-                <artifactId>native-maven-plugin</artifactId>
-                <version>0.10.2</version>
-                <configuration>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>compile-no-fork</goal>
-                        </goals>
-                        <phase>package</phase>
-                    </execution>
-                </executions>
-            </plugin>
+
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>linux</id>
+            <activation>
+                <property>
+                    <name>linux</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.graalvm.buildtools</groupId>
+                        <artifactId>native-maven-plugin</artifactId>
+                        <version>0.10.2</version> <!-- 确保使用兼容 GraalVM 21 的版本 -->
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>compile</goal> <!-- 或 compile-no-fork -->
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <mainClass>${mainClass}</mainClass> <!-- 替换为你的主类 -->
+                            <buildArgs>
+                                <arg>--static</arg> <!-- 启用静态链接 -->
+                                <arg>--libc=musl</arg> <!-- 使用 musl libc 替代 GLIBC -->
+                                <arg>--no-fallback</arg> <!-- 禁用 fallback 模式 -->
+                                <arg>-H:+ReportUnsupportedElementsAtRuntime</arg>
+                            </buildArgs>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>mac</id>
+            <activation>
+                <property>
+                    <name>mac</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.graalvm.buildtools</groupId>
+                        <artifactId>native-maven-plugin</artifactId>
+                        <version>0.10.2</version> <!-- 确保使用兼容 GraalVM 21 的版本 -->
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>compile</goal> <!-- 或 compile-no-fork -->
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <mainClass>${mainClass}</mainClass> <!-- 替换为你的主类 -->
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
