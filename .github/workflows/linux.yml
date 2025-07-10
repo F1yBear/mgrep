@@ -29,7 +29,7 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: |
-          docker run --rm -v ${{ github.workspace }}:/app -w /app ghcr.io/graalvm/native-image-community:24.0.0-ol8-musl ./mvnw -Plinux native:compile
+          docker run --rm -v ${{ github.workspace }}:/app -w /app ghcr.io/graalvm/native-image-community:24-muslib-ol8 ./mvnw -Plinux native:compile
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:
