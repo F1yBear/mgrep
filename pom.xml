@@ -68,7 +68,6 @@
                                 <arg>--static</arg> <!-- 启用静态链接 -->
                                 <arg>--libc=musl</arg>
                                 <arg>--no-fallback</arg> <!-- 禁用 fallback 模式 -->
-                                <arg>-H:+ReportUnsupportedElementsAtRuntime</arg>
                             </buildArgs>
                         </configuration>
                     </plugin>

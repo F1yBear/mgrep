@@ -22,7 +22,8 @@ jobs:
     - name: Install musl
       run: |
         sudo apt-get update
-        sudo apt-get install -y curl musl-tools zlib1g-dev
+        sudo apt-get install -y curl zlib1g-dev musl-dev musl-tools
+        find /usr -name libz.a
     - uses: actions/checkout@v4
     - name: Set up JDK 24
       uses: actions/setup-java@v4
