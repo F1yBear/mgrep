@@ -19,7 +19,7 @@ jobs:
 
     runs-on: ubuntu-latest
     container:
-      image: docker pull ghcr.io/graalvm/native-image-community:24.0.1-muslib-ol8-20250415
+      image: docker pull docker pull ghcr.io/graalvm/native-image-community:24-muslib-ol8
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 24
