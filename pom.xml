@@ -66,11 +66,8 @@
                             <mainClass>${mainClass}</mainClass> <!-- 替换为你的主类 -->
                             <buildArgs>
                                 <arg>--static</arg> <!-- 启用静态链接 -->
-                                <arg>--libc=musl</arg> <!-- 使用 musl libc 替代 GLIBC -->
                                 <arg>--no-fallback</arg> <!-- 禁用 fallback 模式 -->
                                 <arg>-H:+ReportUnsupportedElementsAtRuntime</arg>
-                                <arg> --linker-option=-L/usr/lib/x86_64-linux-gnu</arg>
-                                <arg>--linker-option=-lz</arg>
                             </buildArgs>
                         </configuration>
                     </plugin>
