@@ -69,7 +69,8 @@
                                 <arg>--libc=musl</arg> <!-- 使用 musl libc 替代 GLIBC -->
                                 <arg>--no-fallback</arg> <!-- 禁用 fallback 模式 -->
                                 <arg>-H:+ReportUnsupportedElementsAtRuntime</arg>
-                                <arg>-L/usr/lib/x86_64-linux-gnu</arg>
+                                <arg> --linker-option=-L/usr/lib/x86_64-linux-gnu</arg>
+                                <arg>--linker-option=-lz</arg>
                             </buildArgs>
                         </configuration>
                     </plugin>
