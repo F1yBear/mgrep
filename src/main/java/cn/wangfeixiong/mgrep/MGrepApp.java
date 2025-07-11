@@ -49,8 +49,8 @@ public class MGrepApp {
             if (filename.isEmpty()) {
                 System.out.println("""
                                        使用方法：
-                                        * mgrep '关键词1 关键词2'(或匹配) -h '行首的文字'  -f 文件名(支持通配符)
-                                        * mgrep 关键词1 文件名(支持通配符)
+                                        * mgrep '关键词1 关键词2'(或匹配) -h '行首的文字'  -f 文件名
+                                        * mgrep 关键词1 文件名
                                        """);
                 return;
             }
@@ -66,7 +66,8 @@ public class MGrepApp {
             for (File file1 : files) {
                 try {
                     search(file1, files.length > 1, header, keyWords);
-                } catch (Exception ignored) {
+                } catch (Exception ex) {
+                    System.out.println(file1.getName()+":"+ex.getMessage());
                 }
 
             }
