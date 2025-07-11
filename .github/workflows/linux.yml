@@ -29,14 +29,13 @@ jobs:
           docker run --rm \
             -v ${{ github.workspace }}:/app \
             -w /app \
-            ghcr.io/graalvm/native-image-community:24-muslib-ol8 \
-            native-image \
+            ghcr.io/graalvm/native-image-community:24-muslib-ol8  \
               --no-fallback \
               --static \
               --libc=musl \
               -cp target/mgrep-1.0-SNAPSHOT.jar \
               cn.wangfeixiong.mgrep.MGrepApp
-
+          
       - name: Show binary size
         run: ls -lh ./mgrep
 
