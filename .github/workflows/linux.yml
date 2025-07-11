@@ -29,7 +29,8 @@ jobs:
           docker run --rm \
             -v ${{ github.workspace }}:/app \
             -w /app \
-            ghcr.io/graalvm/native-image-community:24-muslib-ol8  \
+            ghcr.io/graalvm/native-image-community:24-muslib-ol8 \
+            native-image \
               --no-fallback \
               --static \
               --libc=musl \
@@ -37,7 +38,7 @@ jobs:
               cn.wangfeixiong.mgrep.MGrepApp
           
       - name: Show binary size
-        run: ls -lh ./mgrep
+        run: ls -lh
 
       - name: Upload native binary
         uses: actions/upload-artifact@v4
