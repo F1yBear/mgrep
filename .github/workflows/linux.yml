@@ -33,12 +33,9 @@ jobs:
               --no-fallback \
               --static \
               --libc=musl \
+              -H:Name=mgrep \ 
               -cp target/mgrep-1.0-SNAPSHOT.jar \
               cn.wangfeixiong.mgrep.MGrepApp
-          
-      - name: Show binary size
-        run: ls -lh
-
       - name: Upload native binary
         uses: actions/upload-artifact@v4
         with:
