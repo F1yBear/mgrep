@@ -3,9 +3,6 @@ package cn.wangfeixiong.mgrep;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.file.FileSystems;
-import java.nio.file.PathMatcher;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -22,12 +19,12 @@ public class MGrepApp {
     public static final String BOLD = "\033[1m";
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args){
         Set<String> keyWords = new TreeSet<>();
         String header = "";
         String currentDir = System.getProperty("user.dir");
         File file = new File(currentDir);
-        String filename;
+        String filename = "";
 
         if (Objects.nonNull(args) && args.length > 0) {
             String arg = String.join("v'v ", args);
@@ -43,37 +40,36 @@ public class MGrepApp {
                 keyWords.addAll(Arrays.asList(keywords.split("\\s+")));
                 header = matcher.group("header").trim();
                 filename = matcher.group("filename").trim();
-            } else if(matcher2.find()) {
-                    String keywords = matcher2.group("keywords").trim();
-                    keyWords.addAll(Arrays.asList(keywords.split("\\s+")));
-                    filename = matcher2.group("filename").trim();
+            } else if (matcher2.find()) {
+                String keywords = matcher2.group("keywords").trim();
+                keyWords.addAll(Arrays.asList(keywords.split("\\s+")));
+                filename = matcher2.group("filename").trim();
 
-            }else {
-                filename = null;
+            }
+            if (filename.isEmpty()) {
+                System.out.println("""
+                                       使用方法：
+                                        * mgrep '关键词1 关键词2'(或匹配) -h '行首的文字'  -f 文件名(支持通配符)
+                                        * mgrep 关键词1 文件名(支持通配符)
+                                       """);
+                return;
+            }
+            // 用正则替换通配符
+            String regex  = filename.replace(".", "\\.").replace("*", ".*");
+            Pattern patternFile = Pattern.compile(regex);
+            File[] files = file.listFiles((dir, name) -> patternFile.matcher(name).find());
+            if (Objects.isNull(files) || files.length == 0) {
+                System.out.println("当前目录没有对应的文件");
+                return;
             }
 
+            for (File file1 : files) {
+                try {
+                    search(file1, files.length > 1, header, keyWords);
+                } catch (Exception ignored) {
+                }
 
-        } else {
-            filename = null;
-            System.out.println("""
-                                   使用方法：
-                                    * mgrep '关键词1 关键词2' -h '行首的文字'  -f 文件名(支持通配符)
-                                    * mgrep 关键词1 文件名(支持通配符)
-                                   """);
-        }
-        PathMatcher pathMatcher = FileSystems.getDefault()
-                                         .getPathMatcher("glob:"+filename);
-        File[] files = file.listFiles((dir, name) ->pathMatcher.matches(Paths.get(name)));
-        if (Objects.isNull(files) || files.length == 0) {
-            System.out.println("当前目录没有对应的文件");
-            return;
-        }
-
-        for (File file1 : files) {
-            try {
-                search(file1, files.length>1, header, keyWords);
-            }catch (Exception ignored){}
-
+            }
         }
 
     }
