@@ -35,7 +35,7 @@ jobs:
               --libc=musl \
               -cp target/mgrep-1.0-SNAPSHOT.jar \
               cn.wangfeixiong.mgrep.MGrepApp
-          mv cn.wangfeixiong.mgrep.MGrepApp mgrep
+          mv cn.wangfeixiong.mgrep.mgrepapp mgrep
       - name: Upload native binary
         uses: actions/upload-artifact@v4
         with:
