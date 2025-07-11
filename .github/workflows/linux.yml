@@ -34,8 +34,7 @@ jobs:
               --no-fallback \
               --static \
               --libc=musl \
-              -cp target/mgrep-1.0-SNAPSHOT.jar \
-              cn.wangfeixiong.mgrep.MGrepApp
+              -cp target/mgrep-1.0-SNAPSHOT.jar
           
       - name: Show binary size
         run: ls -lh
