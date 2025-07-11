@@ -29,7 +29,7 @@ jobs:
           docker run --rm \
             -v ${{ github.workspace }}:/app \
             -w /app \
-            ghcr.io/graalvm/native-image-community:24.0.0-ol8-musl \
+            ghcr.io/graalvm/native-image-community:24-muslib-ol8 \
             native-image \
               --no-fallback \
               --static \
